@@ -1,0 +1,205 @@
+import Header from './Header.js';
+import Main from './Main.js';
+import Footer from './Footer.js';
+
+function App() {
+  return (
+    <div className="App">
+		{/* <header className="header page__header">
+			<img
+				className="header__logo"
+				src={headerLogo}
+				alt="Место Россия"
+			/>
+		</header> */}
+		<Header />
+		<Main />
+		{/* <main className="content">
+			<section className="profile content__profile">
+				<div className="profile__container">
+					<div className="profile__avatar-area">
+						<img
+							className="profile__avatar"
+							src={profileAvatar}
+							alt="Фотография профиля."
+						/>
+					</div>
+					<div className="profile__info">
+						<h1 className="profile__title">Жак-Ив Кусто</h1>
+						<p className="profile__subtitle">Исследователь океана</p>
+						<button
+							className="profile__edit-button"
+							type="button"
+							aria-label="Редактировать профиль"
+						></button>
+					</div>
+				</div>
+				<button
+					type="button"
+					className="profile__add-button"
+					aria-label="Добавить публикацию"
+				></button>
+			</section>
+			<section className="places content__places">
+				<ul className="places__list"></ul>
+			</section>
+		</main> */}
+		{/* <footer className="footer page__footer">
+			<p className="footer__copy">&copy; 2020 Mesto Russia</p>
+		</footer> */}
+		<Footer />
+		<div className="popup popup_edit">
+			<form className="popup__container" name="edit-form" noValidate>
+				<button
+					className="popup__close-button popup__close-button_position_top"
+					type="button"
+					aria-label="Закрыть форму"
+				></button>
+				<h2 className="popup__heading popup__heading_edit">
+					Редактировать профиль
+				</h2>
+				<fieldset className="popup__info">
+					<input
+						type="text"
+						className="input-text input-text_type_name popup__name"
+						placeholder="Имя"
+						name="name"
+						required
+						minLength="2"
+						maxLength="40"
+					/>
+					<span id="name-error" className="popup__error"></span>
+					<input
+						type="text"
+						className="input-text input-text_type_job popup__job"
+						placeholder="О себе"
+						name="about"
+						required
+						minLength="2"
+						maxLength="200"
+					/>
+					<span id="about-error" className="popup__error"></span>
+				</fieldset>
+				<button className="popup__save-button" type="submit">Сохранить</button>
+			</form>
+		</div>
+		<div className="popup popup_add">
+			<form
+				className="popup__container popup__container_add"
+				name="add-form"
+				noValidate
+			>
+				<button
+					className="popup__close-button popup__close-button_position_diagonally"
+					type="button"
+					aria-label="Закрыть форму"
+				></button>
+				<h2 className="popup__heading popup__heading_add">Новое место</h2>
+				<fieldset className="popup__info">
+					<input
+						type="text"
+						className="input-text input-text_type_heading popup__name"
+						placeholder="Название"
+						name="place-name"
+						required
+						minLength="1"
+						maxLength="30"
+					/>
+					<span id="place-name-error" className="popup__error"></span>
+					<input
+						type="url"
+						className="input-text input-text_type_link popup__link"
+						placeholder="Ссылка на картинку"
+						name="link"
+						required
+					/>
+					<span id="link-error" className="popup__error"></span>
+				</fieldset>
+				<button className="popup__save-button" type="submit">Создать</button>
+			</form>
+		</div>
+		<div className="popup figure-popup">
+			<figure className="popup__figure">
+				<button
+					className="popup__close-button popup__close-button_position_diagonally"
+					type="button"
+					aria-label="Закрыть форму"
+				></button>
+				<img
+					src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg"
+					alt=" "
+					className="popup__image"
+				/>
+				<figcaption className="popup__description">Архыз</figcaption>
+			</figure>
+		</div>
+		<div className="popup popup_confirm">
+			<form name="confirm" className="popup__container popup__container_confirm">
+				<button
+					className="popup__close-button popup__close-button_position_top"
+				></button>
+				<h2 className="popup__heading popup__heading_confirm">Вы уверены?</h2>
+				<button
+					className="popup__save-button popup__save-button_confirm"
+					type="submit"
+				>
+					Да
+				</button>
+			</form>
+		</div>
+		<div className="popup popup_update">
+			<form name="update-avatar" className="popup__container" noValidate>
+				<button
+					className="popup__close-button popup__close-button_position_top"
+					type="button"
+					aria-label="Закрыть форму"
+				></button>
+				<h2 className="popup__heading popup__heading_update">Обновить аватар</h2>
+				<fieldset className="popup__info">
+					<input
+						type="url"
+						className="input-text input-text_type_link popup__link"
+						placeholder="Ссылка на картинку"
+						name="avatar-link"
+						required
+					/>
+					<span id="avatar-link-error" className="popup__error"></span>
+				</fieldset>
+				<button
+					className="popup__save-button popup__save-button_update"
+					type="submit"
+				>
+					Сохранить
+				</button>
+			</form>
+		</div>
+		<template className="place-template">
+			<li className="place">
+				<button
+					type="button"
+					className="place__delete-button"
+					aria-label="Удалить"
+				></button>
+				<img
+					src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg"
+					alt=" "
+					className="place__image"
+				/>
+				<div className="place__description">
+					<h3 className="place__title">Архыз</h3>
+					<div className="place__like">
+						<button
+							type="button"
+							className="place__like-button"
+							aria-label="Понравилось"
+						></button>
+						<span className="place__like-counter">1</span>
+					</div>
+				</div>
+			</li>
+		</template>
+    </div>
+  );
+}
+
+export default App;
