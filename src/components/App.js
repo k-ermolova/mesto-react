@@ -5,48 +5,8 @@ import Footer from './Footer.js';
 function App() {
   return (
     <div className="App">
-		{/* <header className="header page__header">
-			<img
-				className="header__logo"
-				src={headerLogo}
-				alt="Место Россия"
-			/>
-		</header> */}
 		<Header />
 		<Main />
-		{/* <main className="content">
-			<section className="profile content__profile">
-				<div className="profile__container">
-					<div className="profile__avatar-area">
-						<img
-							className="profile__avatar"
-							src={profileAvatar}
-							alt="Фотография профиля."
-						/>
-					</div>
-					<div className="profile__info">
-						<h1 className="profile__title">Жак-Ив Кусто</h1>
-						<p className="profile__subtitle">Исследователь океана</p>
-						<button
-							className="profile__edit-button"
-							type="button"
-							aria-label="Редактировать профиль"
-						></button>
-					</div>
-				</div>
-				<button
-					type="button"
-					className="profile__add-button"
-					aria-label="Добавить публикацию"
-				></button>
-			</section>
-			<section className="places content__places">
-				<ul className="places__list"></ul>
-			</section>
-		</main> */}
-		{/* <footer className="footer page__footer">
-			<p className="footer__copy">&copy; 2020 Mesto Russia</p>
-		</footer> */}
 		<Footer />
 		<div className="popup popup_edit">
 			<form className="popup__container" name="edit-form" noValidate>
@@ -117,21 +77,6 @@ function App() {
 				</fieldset>
 				<button className="popup__save-button" type="submit">Создать</button>
 			</form>
-		</div>
-		<div className="popup figure-popup">
-			<figure className="popup__figure">
-				<button
-					className="popup__close-button popup__close-button_position_diagonally"
-					type="button"
-					aria-label="Закрыть форму"
-				></button>
-				<img
-					src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg"
-					alt=" "
-					className="popup__image"
-				/>
-				<figcaption className="popup__description">Архыз</figcaption>
-			</figure>
 		</div>
 		<div className="popup popup_confirm">
 			<form name="confirm" className="popup__container popup__container_confirm">

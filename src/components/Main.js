@@ -1,11 +1,12 @@
 import profileAvatar from '../images/profile__avatar.jpg';
+import api from '../utils/api.js';
 
-function Main() {
+function Main({handleEditAvatarClick}) {
   return (
 		<main className="content">
 			<section className="profile content__profile">
 				<div className="profile__container">
-					<div className="profile__avatar-area">
+					<div className="profile__avatar-area" onClick={handleEditAvatarClick}>
 						<img
 							className="profile__avatar"
 							src={profileAvatar}
@@ -19,6 +20,7 @@ function Main() {
 							className="profile__edit-button"
 							type="button"
 							aria-label="Редактировать профиль"
+							// onClick={}
 						></button>
 					</div>
 				</div>
@@ -26,6 +28,7 @@ function Main() {
 					type="button"
 					className="profile__add-button"
 					aria-label="Добавить публикацию"
+					// onClick={}
 				></button>
 			</section>
 			<section className="places content__places">
