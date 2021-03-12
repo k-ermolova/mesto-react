@@ -7,26 +7,26 @@ import Card from './Card.js';
 import { useState } from 'react';
 
 function App() {
-	const [isEditProfilePopupOpen, setisEditProfilePopupOpen] = useState(false);
-	const [isAddPlacePopupOpen, setisAddPlacePopupOpen] = useState(false);
-	const [isEditAvatarPopupOpen, setisEditAvatarPopupOpen] = useState(false);
+	const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
+	const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
+	const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
 
 	function handleEditProfileClick() {
-		setisEditProfilePopupOpen(true);
+		setIsEditProfilePopupOpen(true);
 	}
 
 	function handleAddPlaceClick() {
-		setisAddPlacePopupOpen(true);
+		setIsAddPlacePopupOpen(true);
 	}
 
 	function handleEditAvatarClick() {
-		setisEditAvatarPopupOpen(true);
+		setIsEditAvatarPopupOpen(true);
 	}
 
 	function closeAllPopups() {
-		setisEditProfilePopupOpen(false);
-		setisAddPlacePopupOpen(false);
-		setisEditAvatarPopupOpen(false);
+		setIsEditProfilePopupOpen(false);
+		setIsAddPlacePopupOpen(false);
+		setIsEditAvatarPopupOpen(false);
 	}
 
 	return (
@@ -44,7 +44,7 @@ function App() {
 				name="popup_edit"
 				isOpen={isEditProfilePopupOpen}
 				onClose={closeAllPopups}
-				>
+			>
 				<fieldset className="popup__info">
 					<input
 						type="text"
