@@ -1,12 +1,12 @@
 import profileAvatar from '../images/profile__avatar.jpg';
 import api from '../utils/api.js';
 
-function Main({handleEditAvatarClick, handleEditProfileClick, handleAddPlaceClick}) {
-  return (
+function Main({ onEditProfile, onAddPlace, onEditAvatar }) {
+	return (
 		<main className="content">
 			<section className="profile content__profile">
 				<div className="profile__container">
-					<div className="profile__avatar-area" onClick={handleEditAvatarClick}>
+					<div className="profile__avatar-area" onClick={onEditAvatar}>
 						<img
 							className="profile__avatar"
 							src={profileAvatar}
@@ -20,7 +20,7 @@ function Main({handleEditAvatarClick, handleEditProfileClick, handleAddPlaceClic
 							className="profile__edit-button"
 							type="button"
 							aria-label="Редактировать профиль"
-							onClick={handleEditProfileClick}
+							onClick={onEditProfile}
 						></button>
 					</div>
 				</div>
@@ -28,14 +28,14 @@ function Main({handleEditAvatarClick, handleEditProfileClick, handleAddPlaceClic
 					type="button"
 					className="profile__add-button"
 					aria-label="Добавить публикацию"
-					onClick={handleAddPlaceClick}
+					onClick={onAddPlace}
 				></button>
 			</section>
 			<section className="places content__places">
 				<ul className="places__list"></ul>
 			</section>
 		</main>
-  );
+	);
 }
 
 export default Main;
