@@ -1,7 +1,7 @@
 import profileAvatar from '../images/profile__avatar.jpg';
 import api from '../utils/api.js';
 
-function Main({handleEditAvatarClick}) {
+function Main({handleEditAvatarClick, handleEditProfileClick, handleAddPlaceClick}) {
   return (
 		<main className="content">
 			<section className="profile content__profile">
@@ -20,7 +20,7 @@ function Main({handleEditAvatarClick}) {
 							className="profile__edit-button"
 							type="button"
 							aria-label="Редактировать профиль"
-							// onClick={}
+							onClick={handleEditProfileClick}
 						></button>
 					</div>
 				</div>
@@ -28,7 +28,7 @@ function Main({handleEditAvatarClick}) {
 					type="button"
 					className="profile__add-button"
 					aria-label="Добавить публикацию"
-					// onClick={}
+					onClick={handleAddPlaceClick}
 				></button>
 			</section>
 			<section className="places content__places">

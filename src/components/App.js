@@ -7,7 +7,16 @@ function App() {
 	return (
 		<div className="App">
 			<Header />
-			<Main />
+			<Main handleEditAvatarClick={()=> {
+				document.querySelector('.popup_update').classList.add('popup_opened');
+			}}
+			handleEditProfileClick={()=> {
+				document.querySelector('.popup_edit').classList.add('popup_opened');
+			}}
+			handleAddPlaceClick={()=> {
+				document.querySelector('.popup_add').classList.add('popup_opened');
+			}}
+			/>
 			<Footer />
 			<div className="popup popup_edit">
 				<form className="popup__container" name="edit-form" noValidate>
