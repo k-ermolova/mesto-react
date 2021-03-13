@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react';
 import api from '../utils/api.js';
+import Card from './Card.js';
 
-function Main({ onEditProfile, onAddPlace, onEditAvatar }) {
-	const [userName, setUserName] = useState('Имя пользователя');
-	const [userDescription, setUserDescription] = useState('Деятельность');
-	const [userAvatar, setUserAvatar] = useState(null);
+function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
+	const [userName, setUserName] = useState([]);
+	const [userDescription, setUserDescription] = useState([]);
+	const [userAvatar, setUserAvatar] = useState([]);
+	const [cards, setCards] = useState([]);
 
-
-	useEffect(()=>{
+	useEffect(() => {
 		api
 			.getUserInfo()
 			.then((userData) => {
@@ -15,10 +16,13 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar }) {
 				setUserDescription(userData.about);
 				setUserAvatar(userData.avatar)
 			})
-			.catch((err) => {
-			console.log(err);
-			});
-	});
+			.catch(err => console.log(err));
+
+		api
+			.getInitialCards()
+			.then(cards => setCards(cards))
+			.catch(err => console.log(err));
+	}, []);
 
 	return (
 		<main className="content">
@@ -50,7 +54,10 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar }) {
 				></button>
 			</section>
 			<section className="places content__places">
-				<ul className="places__list"></ul>
+				<ul className="places__list">
+					{cards.map(card => (<Card key={card._id} card={card} onCardClick={onCardClick} />)
+					)}
+				</ul>
 			</section>
 		</main>
 	);

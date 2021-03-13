@@ -1,21 +1,22 @@
-function ImagePopup() {
-  return(
-    <div className="popup figure-popup">
+function ImagePopup(props) {
+	return props.card && (
+		<div className={"popup figure-popup popup_opened"}>
 			<figure className="popup__figure">
 				<button
 					className="popup__close-button popup__close-button_position_diagonally"
 					type="button"
 					aria-label="Закрыть форму"
+					onClick={props.onClose}
 				></button>
 				<img
-					src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg"
-					alt=" "
+					src={props.card.link}
+					alt={props.card.name}
 					className="popup__image"
 				/>
-				<figcaption className="popup__description">Архыз</figcaption>
+				<figcaption className="popup__description">{props.card.name}</figcaption>
 			</figure>
 		</div>
-  )
+	)
 }
 
 export default ImagePopup;
