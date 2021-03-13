@@ -1,7 +1,25 @@
-import profileAvatar from '../images/profile__avatar.jpg';
+import { useEffect, useState } from 'react';
 import api from '../utils/api.js';
 
 function Main({ onEditProfile, onAddPlace, onEditAvatar }) {
+	const [userName, setUserName] = useState('Имя пользователя');
+	const [userDescription, setUserDescription] = useState('Деятельность');
+	const [userAvatar, setUserAvatar] = useState(null);
+
+
+	useEffect(()=>{
+		api
+			.getUserInfo()
+			.then((userData) => {
+				setUserName(userData.name);
+				setUserDescription(userData.about);
+				setUserAvatar(userData.avatar)
+			})
+			.catch((err) => {
+			console.log(err);
+			});
+	});
+
 	return (
 		<main className="content">
 			<section className="profile content__profile">
@@ -9,13 +27,13 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar }) {
 					<div className="profile__avatar-area" onClick={onEditAvatar}>
 						<img
 							className="profile__avatar"
-							src={profileAvatar}
+							src={userAvatar}
 							alt="Фотография профиля."
 						/>
 					</div>
 					<div className="profile__info">
-						<h1 className="profile__title">Жак-Ив Кусто</h1>
-						<p className="profile__subtitle">Исследователь океана</p>
+						<h1 className="profile__title">{userName}</h1>
+						<p className="profile__subtitle">{userDescription}</p>
 						<button
 							className="profile__edit-button"
 							type="button"
