@@ -1,7 +1,7 @@
 import headerLogo from '../images/header__logo.svg';
 
 function Header() {
-  return (
+	return (
 		<header className="header page__header">
 			<img
 				className="header__logo"
@@ -9,7 +9,7 @@ function Header() {
 				alt="Место Россия"
 			/>
 		</header>
-  );
+	);
 }
 
 export default Header;

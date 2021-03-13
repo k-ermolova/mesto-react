@@ -79,9 +79,9 @@ class Api {
 }
 
 export default new Api({
-	baseUrl: "https://mesto.nomoreparties.co/v1/cohort-20/",
-	headers: {
-		"content-type": "application/json",
-		authorization: "0949ddb6-de07-424c-aec4-470c89dc006f",
-	},
+  baseUrl: "https://mesto.nomoreparties.co/v1/cohort-20/",
+  headers: {
+    "content-type": "application/json",
+    authorization: "0949ddb6-de07-424c-aec4-470c89dc006f",
+  },
 });
