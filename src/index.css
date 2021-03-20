@@ -47,6 +47,8 @@
 @import url(./blocks/popup/__close-button/_position/_top/popup__close-button_position_top.css);
 @import url(./blocks/figure-popup/figure-popup.css);
 @import url(./blocks/place/__delete-button/place__delete-button.css);
+@import url(./blocks/place/__delete-button/_visible/place__delete-button_visible.css);
+@import url(./blocks/place/__delete-button/_hidden/place__delete-button_hidden.css);
 @import url(./blocks/place/__like/place__like.css);
 @import url(./blocks/place/__like-counter/place__like-counter.css);
 @import url(./blocks/popup/__container/_confirm/popup__container_confirm.css);
