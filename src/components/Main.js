@@ -14,6 +14,34 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
 			.catch(err => console.log(err));
 	}, []);
 
+	function handleCardLike(card) {
+		const isLiked = card.likes.some(i => i._id === currentUser._id);
+		if (!isLiked) {
+			api
+				.putLike(card._id, !isLiked)
+				.then((newCard) => {
+					setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
+				})
+				.catch(err => console.log(err));
+		} else {
+			api
+				.deleteLike(card._id, !isLiked)
+				.then((newCard) => {
+					setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
+				})
+				.catch(err => console.log(err));
+		}
+
+	}
+
+	function handleCardDelete(card) {
+		api
+			.deleteCard(card._id)
+			.then(
+				setCards(() => cards.filter(c => c._id !== card._id)))
+			.catch(err => console.log(err));
+	}
+
 	return (
 		<main className="content">
 			<section className="profile content__profile">
@@ -45,7 +73,12 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
 			</section>
 			<section className="places content__places">
 				<ul className="places__list">
-					{cards.map(card => (<Card key={card._id} card={card} onCardClick={onCardClick} />)
+					{cards.map(card => (<Card
+						key={card._id}
+						card={card}
+						onCardClick={onCardClick}
+						onCardLike={handleCardLike}
+						onCardDelete={handleCardDelete} />)
 					)}
 				</ul>
 			</section>
