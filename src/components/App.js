@@ -6,6 +6,7 @@ import ImagePopup from './ImagePopup.js'
 import { useEffect, useState } from 'react';
 import api from '../utils/api.js';
 import { CurrentUserContext } from '../contexts/CurrentUserContext.js';
+import EditProfilePopup from './EditProfilePopup.js';
 
 function App() {
 	const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
@@ -40,6 +41,15 @@ function App() {
 		setSelectedCard(card);
 	}
 
+	function handleUpdateUser(user) {
+		api
+			.updateUserInfo(user)
+			.then((userData) => setCurrentUser(userData))
+			.catch(err => console.log(err));
+
+		closeAllPopups();
+	}
+
 	function closeAllPopups() {
 		setIsEditProfilePopupOpen(false);
 		setIsAddPlacePopupOpen(false);
@@ -59,36 +69,11 @@ function App() {
 				/>
 				<Footer />
 
-				<PopupWithForm
-					title="Редактировать профиль"
-					name="popup_edit"
+				<EditProfilePopup
 					isOpen={isEditProfilePopupOpen}
 					onClose={closeAllPopups}
-				>
-					<fieldset className="popup__info">
-						<input
-							type="text"
-							className="input-text input-text_type_name popup__name"
-							placeholder="Имя"
-							name="name"
-							required
-							minLength="2"
-							maxLength="40"
-						/>
-						<span id="name-error" className="popup__error"></span>
-						<input
-							type="text"
-							className="input-text input-text_type_job popup__job"
-							placeholder="О себе"
-							name="about"
-							required
-							minLength="2"
-							maxLength="200"
-						/>
-						<span id="about-error" className="popup__error"></span>
-					</fieldset>
-					<button className="popup__save-button" type="submit">Сохранить</button>
-				</PopupWithForm>
+					onUpdateUser={handleUpdateUser}
+				/>
 
 				<PopupWithForm
 					title="Новое место"
