@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 import api from '../utils/api.js';
 import { CurrentUserContext } from '../contexts/CurrentUserContext.js';
 import EditProfilePopup from './EditProfilePopup.js';
+import EditAvatarPopup from './EditAvatarPopup.js';
 
 function App() {
 	const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
@@ -44,6 +45,15 @@ function App() {
 	function handleUpdateUser(user) {
 		api
 			.updateUserInfo(user)
+			.then((userData) => setCurrentUser(userData))
+			.catch(err => console.log(err));
+
+		closeAllPopups();
+	}
+
+	function handleUpdateAvatar(user) {
+		api
+			.updateAvatar(user)
 			.then((userData) => setCurrentUser(userData))
 			.catch(err => console.log(err));
 
@@ -104,29 +114,11 @@ function App() {
 					<button className="popup__save-button" type="submit">Создать</button>
 				</PopupWithForm>
 
-				<PopupWithForm
-					title="Обновить аватар"
-					name="popup_update"
+				<EditAvatarPopup
 					isOpen={isEditAvatarPopupOpen}
 					onClose={closeAllPopups}
-				>
-					<fieldset className="popup__info">
-						<input
-							type="url"
-							className="input-text input-text_type_link popup__link"
-							placeholder="Ссылка на картинку"
-							name="avatar-link"
-							required
-						/>
-						<span id="avatar-link-error" className="popup__error"></span>
-					</fieldset>
-					<button
-						className="popup__save-button popup__save-button_update"
-						type="submit"
-					>
-						Сохранить
-				</button>
-				</PopupWithForm>
+					onUpdateAvatar={handleUpdateAvatar}
+				/>
 
 				<PopupWithForm
 					title="Вы уверены?"
