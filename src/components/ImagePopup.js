@@ -1,6 +1,6 @@
 function ImagePopup(props) {
-	return props.card && (
-		<div className={"popup figure-popup popup_opened"}>
+	return (
+		<div className={`popup figure-popup ${props.isOpen && 'popup_opened'}`}>
 			<figure className="popup__figure">
 				<button
 					className="popup__close-button popup__close-button_position_diagonally"

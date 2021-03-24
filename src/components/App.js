@@ -1,7 +1,6 @@
 import Header from './Header.js';
 import Main from './Main.js';
 import Footer from './Footer.js';
-import PopupWithForm from './PopupWithForm.js';
 import ImagePopup from './ImagePopup.js'
 import { useEffect, useState } from 'react';
 import api from '../utils/api.js';
@@ -9,14 +8,16 @@ import { CurrentUserContext } from '../contexts/CurrentUserContext.js';
 import EditProfilePopup from './EditProfilePopup.js';
 import EditAvatarPopup from './EditAvatarPopup.js';
 import AddPlacePopup from './AddPlacePopup.js';
+import ConfirmationPopup from './ConfirmationPopup.js';
 
 function App() {
 	const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
 	const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
 	const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
 	const [selectedCard, setSelectedCard] = useState(null);
+	const [isImagePopupOpen, setImagePopupOpen] = useState(false);
 
-	const [currentUser, setCurrentUser] = useState([]);
+	const [currentUser, setCurrentUser] = useState({});
 	const [cards, setCards] = useState([]);
 
 	useEffect(() => {
@@ -48,25 +49,28 @@ function App() {
 	}
 
 	function handleCardClick(card) {
+		setImagePopupOpen(true);
 		setSelectedCard(card);
 	}
 
 	function handleUpdateUser(user) {
 		api
 			.updateUserInfo(user)
-			.then((userData) => setCurrentUser(userData))
+			.then((userData) => {
+				setCurrentUser(userData);
+				closeAllPopups();
+			})
 			.catch(err => console.log(err));
-
-		closeAllPopups();
 	}
 
 	function handleUpdateAvatar(user) {
 		api
 			.updateAvatar(user)
-			.then((userData) => setCurrentUser(userData))
+			.then((userData) => {
+				setCurrentUser(userData);
+				closeAllPopups();
+			})
 			.catch(err => console.log(err));
-
-		closeAllPopups();
 	}
 
 	function handleCardLike(card) {
@@ -102,17 +106,16 @@ function App() {
 			.addNewCard(card)
 			.then((newCard) => {
 				setCards([newCard, ...cards]);
+				closeAllPopups();
 			})
 			.catch(err => console.log(err));
-
-		closeAllPopups();
 	}
 
 	function closeAllPopups() {
 		setIsEditProfilePopupOpen(false);
 		setIsAddPlacePopupOpen(false);
 		setIsEditAvatarPopupOpen(false);
-		setSelectedCard(null);
+		setImagePopupOpen(false);
 	}
 
 	return (
@@ -148,19 +151,9 @@ function App() {
 					onUpdateAvatar={handleUpdateAvatar}
 				/>
 
-				<PopupWithForm
-					title="Вы уверены?"
-					name="popup_confirm"
-				>
-					<button
-						className="popup__save-button popup__save-button_confirm"
-						type="submit"
-					>
-						Да
-				</button>
-				</PopupWithForm>
+				<ConfirmationPopup />
 
-				<ImagePopup card={selectedCard} onClose={closeAllPopups} />
+				<ImagePopup card={selectedCard || false} isOpen={isImagePopupOpen} onClose={closeAllPopups} />
 			</CurrentUserContext.Provider>
 		</div>
 	);
