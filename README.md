@@ -11,3 +11,8 @@
 1. `git clone https://github.com/k-ermolova/mesto-react.git` | [ZIP](https://github.com/k-ermolova/mesto-react/archive/refs/heads/main.zip).
 2. Установить зависимости, используя `npm i`.
 3. Запустить с помощью `npm start`.
+
+## План по доработке
+
+- Улучшить валидацию (аналогично проекту _Mesto_)
+- Добавить попап подтверждения при удалении карточки
